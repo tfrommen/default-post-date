@@ -1,0 +1,40 @@
+<?php # -*- coding: utf-8 -*-
+/**
+ * Plugin Name: Default Post Date
+ * Plugin URI:  https://github.com/tfrommen/default-post-date
+ * Description: Define an individual default post date that is to be used when adding a new post.
+ * Author:      Thorsten Frommen
+ * Author URI:  http://ipm-frommen.de
+ * Version:     1.0
+ * Text Domain: default-post-date
+ * Domain Path: /languages
+ * License:     GPLv3
+ */
+
+namespace tf\DefaultPostDate;
+
+use tf\Autoloader;
+
+if ( ! function_exists( 'add_action' ) ) {
+	return;
+}
+
+require_once __DIR__ . '/inc/Autoloader/bootstrap.php';
+
+add_action( 'plugins_loaded', __NAMESPACE__ . '\init' );
+
+/**
+ * Init plugin.
+ *
+ * @wp-hook plugins_loaded
+ *
+ * @return void
+ */
+function init() {
+
+	$autoloader = new Autoloader\Autoloader();
+	$autoloader->add_rule( new Autoloader\NamespaceRule( __DIR__ . DIRECTORY_SEPARATOR . 'inc', __NAMESPACE__ ) );
+
+	$plugin = new Plugin( __FILE__ );
+	$plugin->init();
+}
