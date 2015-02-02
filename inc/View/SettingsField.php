@@ -44,8 +44,6 @@ class SettingsField {
 	 */
 	public function render() {
 
-		$value = Model\Option::get();
-
 		$description = _x(
 			'Please enter the default post date according to the %s date format.',
 			'Settings field description, %s = date format',
@@ -55,6 +53,8 @@ class SettingsField {
 			$description,
 			'<code>YYYY-MM-DD</code>'
 		);
+
+		$value = Model\Option::get();
 
 		printf(
 			'<input type="text" id="%s" name="%s" value="%s"><p class="description">%s</p>',

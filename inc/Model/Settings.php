@@ -29,7 +29,7 @@ class Settings {
 	/**
 	 * Add settings field to general options.
 	 *
-	 * @wphook admin_init
+	 * @wp-hook admin_init
 	 *
 	 * @return void
 	 */
@@ -44,11 +44,11 @@ class Settings {
 		);
 
 		$id = 'default-post-date';
-
+		$title = esc_html_x( 'Default Post Date', 'Settings field title', 'default-post-date' );
 		$title = sprintf(
 			'<label for="%s">%s</label>',
 			$id,
-			esc_html_x( 'Default Post Date', 'Settings field title', 'default-post-date' )
+			$title
 		);
 		$settings_field = new View\SettingsField( $id, $option_name );
 		add_settings_field(

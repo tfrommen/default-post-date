@@ -33,7 +33,7 @@ add_action( 'plugins_loaded', __NAMESPACE__ . '\init' );
 function init() {
 
 	$autoloader = new Autoloader\Autoloader();
-	$autoloader->add_rule( new Autoloader\NamespaceRule( __DIR__ . DIRECTORY_SEPARATOR . 'inc', __NAMESPACE__ ) );
+	$autoloader->add_rule( new Autoloader\NamespaceRule( __DIR__ . '/inc', __NAMESPACE__ ) );
 
 	$plugin = new Plugin( __FILE__ );
 	$plugin->init();

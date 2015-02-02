@@ -15,7 +15,9 @@ class Plugin {
 	private $file;
 
 	/**
-	 * Constructor. Init text domain.
+	 * Constructor. Init properties.
+	 *
+	 * @see init()
 	 *
 	 * @param string $file Main plugin file
 	 */
@@ -26,6 +28,8 @@ class Plugin {
 
 	/**
 	 * Init controllers.
+	 *
+	 * @see init()
 	 *
 	 * @return void
 	 */

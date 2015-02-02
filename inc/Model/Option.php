@@ -27,7 +27,7 @@ class Option {
 	/**
 	 * Get option value.
 	 *
-	 * @param string $default
+	 * @param string $default Default option value (Optional)
 	 *
 	 * @return string
 	 */

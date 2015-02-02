@@ -30,6 +30,8 @@ class TextDomain {
 	/**
 	 * Load text domain.
 	 *
+	 * @see tf\DefaultPostDate\Controller\Admin::init()
+	 *
 	 * @return void
 	 */
 	public function load() {
