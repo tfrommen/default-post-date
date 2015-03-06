@@ -1,11 +1,11 @@
 <?php # -*- coding: utf-8 -*-
 /**
  * Plugin Name: Default Post Date
- * Plugin URI:  https://github.com/tfrommen/default-post-date
+ * Plugin URI:  https://wordpress.org/plugins/default-post-date/
  * Description: Define an individual default post date that is to be used when adding a new post.
  * Author:      Thorsten Frommen
  * Author URI:  http://ipm-frommen.de
- * Version:     1.0
+ * Version:     1.1
  * Text Domain: default-post-date
  * Domain Path: /languages
  * License:     GPLv3
