@@ -15,11 +15,9 @@ class Plugin {
 	private $file;
 
 	/**
-	 * Constructor. Init properties.
+	 * Constructor. Set up the properties.
 	 *
-	 * @see init()
-	 *
-	 * @param string $file Main plugin file
+	 * @param string $file Main plugin file.
 	 */
 	public function __construct( $file ) {
 
@@ -27,20 +25,22 @@ class Plugin {
 	}
 
 	/**
-	 * Init controllers.
-	 *
-	 * @see init()
+	 * Initialize the plugin.
 	 *
 	 * @return void
 	 */
-	public function init() {
+	public function initialize() {
 
-		if ( is_admin() ) {
-			$text_domain = new Model\TextDomain( $this->file );
+		$text_domain = new Model\TextDomain( $this->file );
+		$text_domain->load();
 
-			$admin_controller = new Controller\Admin( $text_domain );
-			$admin_controller->init();
-		}
+		$settings = new Model\Settings();
+		$settings_controller = new Controller\Settings( $settings );
+		$settings_controller->initialize();
+
+		$script = new View\Script( $settings );
+		$script_controller = new Controller\Script( $script );
+		$script_controller->initialize();
 	}
 
 }

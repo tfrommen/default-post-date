@@ -2,7 +2,7 @@
 
 namespace tf\DefaultPostDate\View;
 
-use tf\DefaultPostDate\Model;
+use tf\DefaultPostDate\Model\Settings;
 
 /**
  * Class SettingsField
@@ -12,33 +12,22 @@ use tf\DefaultPostDate\Model;
 class SettingsField {
 
 	/**
-	 * @var string
+	 * @var Settings
 	 */
-	private $id;
+	private $settings;
 
 	/**
-	 * @var string
-	 */
-	private $name;
-
-	/**
-	 * Constructor. Set up properties.
+	 * Constructor. Set up the properties.
 	 *
-	 * @see tf\DefaultPostDate\Model\Settings::add()
-	 *
-	 * @param string $id   Settings field ID
-	 * @param string $name Settings field name
+	 * @param Settings $settings Settings model.
 	 */
-	public function __construct( $id, $name ) {
+	public function __construct( Settings $settings ) {
 
-		$this->id = $id;
-		$this->name = $name;
+		$this->settings = $settings;
 	}
 
 	/**
-	 * Render HTML.
-	 *
-	 * @see tf\DefaultPostDate\Model\Settings::add()
+	 * Render the HTML.
 	 *
 	 * @return void
 	 */
@@ -54,13 +43,12 @@ class SettingsField {
 			'<code>YYYY-MM-DD</code>'
 		);
 
-		$value = Model\Option::get();
-
 		printf(
-			'<input type="text" id="%s" name="%s" value="%s"><p class="description">%s</p>',
-			$this->id,
-			$this->name,
-			$value,
+			'<input type="text" id="%s" name="%s" value="%s" maxlength="10" placeholder="YYYY-MM-DD">
+			<p class="description">%s</p>',
+			$this->settings->get_settings_field_id(),
+			$this->settings->get_option_name(),
+			$this->settings->get(),
 			$description
 		);
 	}

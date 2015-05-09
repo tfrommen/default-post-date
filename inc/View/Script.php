@@ -2,7 +2,7 @@
 
 namespace tf\DefaultPostDate\View;
 
-use tf\DefaultPostDate\Model;
+use tf\DefaultPostDate\Model\Settings;
 
 /**
  * Class Script
@@ -12,16 +12,31 @@ use tf\DefaultPostDate\Model;
 class Script {
 
 	/**
-	 * Print script tag to set post date according to saved default.
+	 * @var Settings
+	 */
+	private $settings;
+
+	/**
+	 * Constructor. Set up the properties.
 	 *
-	 * @wp-hook admin_footer-post-new.php
+	 * @param Settings $settings Settings model.
+	 */
+	public function __construct( Settings $settings ) {
+
+		$this->settings = $settings;
+	}
+
+	/**
+	 * Render the script tag to set the post date according to the saved default date.
+	 *
+	 * @wp-hook post_submitbox_misc_actions
 	 *
 	 * @return void
 	 */
 	public function render() {
 
-		$value = Model\Option::get();
-		if ( ! $value ) {
+		$value = $this->settings->get();
+		if ( $value === '' ) {
 			return;
 		}
 

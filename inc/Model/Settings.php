@@ -14,67 +14,108 @@ class Settings {
 	/**
 	 * @var string
 	 */
+	private $option_group = 'general';
+
+	/**
+	 * @var string
+	 */
+	private $option_name = '_default_post_date';
+
+	/**
+	 * @var string
+	 */
 	private $page = 'general';
 
 	/**
-	 * Get options page name.
-	 *
-	 * @return string
+	 * @var string
 	 */
-	public function get_page() {
-
-		return $this->page;
-	}
+	private $settings_field_id = 'default-post-date';
 
 	/**
-	 * Add settings field to general options.
+	 * Register the settings.
 	 *
-	 * @wp-hook admin_init
+	 * @wp-hook init
 	 *
 	 * @return void
 	 */
-	public function add() {
-
-		$option_name = Option::get_name();
+	public function register() {
 
 		register_setting(
-			$this->page,
-			$option_name,
+			$this->option_group,
+			$this->option_name,
 			array( $this, 'sanitize' )
-		);
-
-		$id = 'default-post-date';
-		$title = esc_html_x( 'Default Post Date', 'Settings field title', 'default-post-date' );
-		$title = sprintf(
-			'<label for="%s">%s</label>',
-			$id,
-			$title
-		);
-		$settings_field = new View\SettingsField( $id, $option_name );
-		add_settings_field(
-			$option_name,
-			$title,
-			array( $settings_field, 'render' ),
-			$this->page
 		);
 	}
 
 	/**
-	 * Sanitize setting.
+	 * Sanitize the setting value.
 	 *
-	 * @see add()
-	 *
-	 * @param string $value Setting value
+	 * @param string $value Setting value.
 	 *
 	 * @return string
 	 */
 	public function sanitize( $value ) {
 
-		if ( preg_match( '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/', $value ) ) {
-			return $value;
+		$time = strtotime( $value );
+		if ( $time === FALSE ) {
+			return '';
 		}
 
-		return '';
+		return date( 'Y-m-d', $time );
+	}
+
+	/**
+	 * Add the settings field to the general options.
+	 *
+	 * @wp-hook admin_init
+	 *
+	 * @return void
+	 */
+	public function add_settings_field() {
+
+		$title = esc_html_x( 'Default Post Date', 'Settings field title', 'default-post-date' );
+		$title = sprintf(
+			'<label for="%s">%s</label>',
+			$this->settings_field_id,
+			$title
+		);
+
+		add_settings_field(
+			$this->option_name,
+			$title,
+			array( new View\SettingsField( $this ), 'render' ),
+			$this->page
+		);
+	}
+
+	/**
+	 * Get the option value.
+	 *
+	 * @return string
+	 */
+	public function get() {
+
+		return get_option( $this->option_name, '' );
+	}
+
+	/**
+	 * Get the option name.
+	 *
+	 * @return string
+	 */
+	public function get_option_name() {
+
+		return $this->option_name;
+	}
+
+	/**
+	 * Get the settings field ID.
+	 *
+	 * @return string
+	 */
+	public function get_settings_field_id() {
+
+		return $this->settings_field_id;
 	}
 
 }

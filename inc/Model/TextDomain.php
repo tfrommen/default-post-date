@@ -15,11 +15,9 @@ class TextDomain {
 	private $path;
 
 	/**
-	 * Constructor. Set up properties.
+	 * Constructor. Set up the properties.
 	 *
-	 * @see tf\DefaultPostDate\Plugin::init()
-	 *
-	 * @param string $file Main plugin file
+	 * @param string $file Main plugin file.
 	 */
 	public function __construct( $file ) {
 
@@ -28,9 +26,7 @@ class TextDomain {
 	}
 
 	/**
-	 * Load text domain.
-	 *
-	 * @see tf\DefaultPostDate\Controller\Admin::init()
+	 * Load the text domain.
 	 *
 	 * @return void
 	 */
