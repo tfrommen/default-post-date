@@ -42,14 +42,17 @@ This plugin requires PHP 5.3.
 
 == Changelog ==
 
+= 1.3 =
+* Complete refactor.
+
 = 1.2 =
-* refactor plugin
-* improve date sanitization
-* compatible up to WordPress 4.2.2
+* Complete refactor.
+* Improve date sanitization.
+* Compatible up to WordPress 4.2.2.
 
 = 1.1 =
 * wordpress.org release
-* compatible up to WordPress 4.1.1
+* Compatible up to WordPress 4.1.1.
 
 = 1.0 =
-* initial release
+* Initial release.

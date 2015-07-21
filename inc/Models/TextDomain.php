@@ -1,13 +1,18 @@
 <?php # -*- coding: utf-8 -*-
 
-namespace tf\DefaultPostDate\Model;
+namespace tf\DefaultPostDate\Models;
 
 /**
  * Class TextDomain
  *
- * @package tf\DefaultPostDate\Model
+ * @package tf\DefaultPostDate\Models
  */
 class TextDomain {
+
+	/**
+	 * @var string
+	 */
+	private $domain = 'default-post-date';
 
 	/**
 	 * @var string
@@ -28,11 +33,11 @@ class TextDomain {
 	/**
 	 * Load the text domain.
 	 *
-	 * @return void
+	 * @return bool
 	 */
 	public function load() {
 
-		load_plugin_textdomain( 'default-post-date', FALSE, $this->path );
+		return load_plugin_textdomain( $this->domain, FALSE, $this->path );
 	}
 
 }

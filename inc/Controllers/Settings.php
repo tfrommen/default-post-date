@@ -1,14 +1,14 @@
 <?php # -*- coding: utf-8 -*-
 
-namespace tf\DefaultPostDate\Controller;
+namespace tf\DefaultPostDate\Controllers;
 
-use tf\DefaultPostDate\Model\Settings as Model;
-use tf\DefaultPostDate\View;
+use tf\DefaultPostDate\Models\Settings as Model;
+use tf\DefaultPostDate\Views\SettingsField as View;
 
 /**
  * Class Settings
  *
- * @package tf\DefaultPostDate\Controller
+ * @package tf\DefaultPostDate\Controllers
  */
 class Settings {
 
@@ -18,13 +18,21 @@ class Settings {
 	private $model;
 
 	/**
+	 * @var View
+	 */
+	private $view;
+
+	/**
 	 * Constructor. Set up the properties.
 	 *
 	 * @param Model $model Model.
+	 * @param View  $view  View.
 	 */
-	public function __construct( Model $model ) {
+	public function __construct( Model $model, View $view ) {
 
 		$this->model = $model;
+
+		$this->view = $view;
 	}
 
 	/**
@@ -35,7 +43,7 @@ class Settings {
 	public function initialize() {
 
 		add_action( 'admin_init', array( $this->model, 'register' ) );
-		add_action( 'admin_init', array( $this->model, 'add_settings_field' ) );
+		add_action( 'admin_init', array( $this->view, 'add' ) );
 	}
 
 }

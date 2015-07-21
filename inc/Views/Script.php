@@ -1,13 +1,13 @@
 <?php # -*- coding: utf-8 -*-
 
-namespace tf\DefaultPostDate\View;
+namespace tf\DefaultPostDate\Views;
 
-use tf\DefaultPostDate\Model\Settings;
+use tf\DefaultPostDate\Models\Settings;
 
 /**
  * Class Script
  *
- * @package tf\DefaultPostDate\View
+ * @package tf\DefaultPostDate\Views
  */
 class Script {
 

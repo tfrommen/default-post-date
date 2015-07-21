@@ -1,13 +1,11 @@
 <?php # -*- coding: utf-8 -*-
 
-namespace tf\DefaultPostDate\Model;
-
-use tf\DefaultPostDate\View;
+namespace tf\DefaultPostDate\Models;
 
 /**
  * Class Settings
  *
- * @package tf\DefaultPostDate\Model
+ * @package tf\DefaultPostDate\Models
  */
 class Settings {
 
@@ -20,16 +18,6 @@ class Settings {
 	 * @var string
 	 */
 	private $option_name = '_default_post_date';
-
-	/**
-	 * @var string
-	 */
-	private $page = 'general';
-
-	/**
-	 * @var string
-	 */
-	private $settings_field_id = 'default-post-date';
 
 	/**
 	 * Register the settings.
@@ -65,30 +53,6 @@ class Settings {
 	}
 
 	/**
-	 * Add the settings field to the general options.
-	 *
-	 * @wp-hook admin_init
-	 *
-	 * @return void
-	 */
-	public function add_settings_field() {
-
-		$title = esc_html_x( 'Default Post Date', 'Settings field title', 'default-post-date' );
-		$title = sprintf(
-			'<label for="%s">%s</label>',
-			$this->settings_field_id,
-			$title
-		);
-
-		add_settings_field(
-			$this->option_name,
-			$title,
-			array( new View\SettingsField( $this ), 'render' ),
-			$this->page
-		);
-	}
-
-	/**
 	 * Get the option value.
 	 *
 	 * @return string
@@ -106,16 +70,6 @@ class Settings {
 	public function get_option_name() {
 
 		return $this->option_name;
-	}
-
-	/**
-	 * Get the settings field ID.
-	 *
-	 * @return string
-	 */
-	public function get_settings_field_id() {
-
-		return $this->settings_field_id;
 	}
 
 }

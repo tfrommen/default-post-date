@@ -5,7 +5,7 @@
  * Description: Define an individual default post date that is to be used when adding a new post.
  * Author:      Thorsten Frommen
  * Author URI:  http://ipm-frommen.de/wordpress
- * Version:     1.2
+ * Version:     1.3
  * Text Domain: default-post-date
  * Domain Path: /languages
  * License:     GPLv3

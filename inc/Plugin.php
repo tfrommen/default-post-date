@@ -31,15 +31,16 @@ class Plugin {
 	 */
 	public function initialize() {
 
-		$text_domain = new Model\TextDomain( $this->file );
+		$text_domain = new Models\TextDomain( $this->file );
 		$text_domain->load();
 
-		$settings = new Model\Settings();
-		$settings_controller = new Controller\Settings( $settings );
+		$settings = new Models\Settings();
+		$settings_field_view = new Views\SettingsField( $settings );
+		$settings_controller = new Controllers\Settings( $settings, $settings_field_view );
 		$settings_controller->initialize();
 
-		$script = new View\Script( $settings );
-		$script_controller = new Controller\Script( $script );
+		$script = new Views\Script( $settings );
+		$script_controller = new Controllers\Script( $script );
 		$script_controller->initialize();
 	}
 
