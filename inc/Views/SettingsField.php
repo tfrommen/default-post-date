@@ -69,24 +69,20 @@ class SettingsField {
 	 */
 	public function render() {
 
-		$description = _x(
+		$value = $this->settings->get();
+
+		$description = esc_html_x(
 			'Please enter the default post date according to the %s date format.',
 			'Settings field description, %s = date format',
 			'default-post-date'
 		);
-		$description = sprintf(
-			$description,
-			'<code>YYYY-MM-DD</code>'
-		);
-
-		printf(
-			'<input type="text" id="%s" name="%s" value="%s" maxlength="10" placeholder="YYYY-MM-DD">
-			<p class="description">%s</p>',
-			$this->id,
-			$this->option_name,
-			$this->settings->get(),
-			$description
-		);
+		?>
+		<input type="text" id="<?php echo $this->id; ?>" name="<?php echo $this->option_name; ?>"
+			value="<?php echo esc_attr( $value ); ?>" maxlength="10" placeholder="YYYY-MM-DD">
+		<p class="description">
+			<?php printf( $description, '<code>YYYY-MM-DD</code>' ); ?>
+		</p>
+	<?php
 	}
 
 }
