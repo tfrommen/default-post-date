@@ -20,6 +20,8 @@ class SettingsControllerTest extends TestCase {
 		WP_Mock::expectActionAdded( 'admin_init', array( $view, 'add' ) );
 
 		$testee->initialize();
+
+		$this->assertHooksAdded();
 	}
 
 }

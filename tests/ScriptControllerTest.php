@@ -15,6 +15,8 @@ class ScriptControllerTest extends TestCase {
 		WP_Mock::expectActionAdded( 'post_submitbox_misc_actions', array( $view, 'render' ) );
 
 		$testee->initialize();
+
+		$this->assertHooksAdded();
 	}
 
 }
