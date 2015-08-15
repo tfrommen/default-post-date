@@ -1,0 +1,26 @@
+{
+	"name": "tfrommen/default-post-date",
+	"description": "Define an individual default post date that is to be used when adding a new post.",
+	"keywords": [
+		"bulk",
+		"date",
+		"post",
+		"posts",
+		"publish"
+	],
+	"homepage": "https://github.com/tfrommen/default-post-date",
+	"license": "GPL-3.0",
+	"authors": [
+		{
+			"name": "Thorsten Frommen",
+			"email": "tf@ipm-frommen.de",
+			"homepage": "http://ipm-frommen.de/wordpress"
+		}
+	],
+	"require": {
+		"php": ">=5.3.0"
+	},
+	"require-dev": {
+		"10up/wp_mock": "dev-master"
+	}
+}

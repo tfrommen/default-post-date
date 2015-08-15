@@ -50,7 +50,7 @@ class Script {
 		$date = date_i18n( $datef, $time );
 		?>
 		<script>
-			jQuery( function( $ ) {
+			( function( $ ) {
 				'use strict';
 
 				var $timestampdiv = $( '#timestampdiv' );
@@ -71,9 +71,9 @@ class Script {
 				var $timestamp = $( '#timestamp' ).find( 'b' );
 
 				if ( $timestamp.length ) {
-					$timestamp.html( '<?php echo $date; ?>' );
+					$timestamp.html( '<?php echo esc_js( $date ); ?>' );
 				}
-			} );
+			} )( jQuery );
 		</script>
 	<?php
 	}
