@@ -15,6 +15,7 @@ class ScriptViewTest extends TestCase {
 		$testee = new Testee( $model );
 
 		$this->expectOutputString( '' );
+
 		$testee->render();
 	}
 
@@ -66,7 +67,6 @@ class ScriptViewTest extends TestCase {
 				}
 			} )( jQuery );
 		</script>
-\t
 HTML;
 
 		$this->expectOutputString( $output );
