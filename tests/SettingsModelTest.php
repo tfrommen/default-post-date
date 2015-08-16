@@ -22,6 +22,8 @@ class SettingsModelTest extends TestCase {
 		);
 
 		$testee->register();
+
+		$this->assertConditionsMet();
 	}
 
 	public function test_sanitize_empty_string() {
@@ -75,6 +77,8 @@ class SettingsModelTest extends TestCase {
 		);
 
 		$testee->get();
+
+		$this->assertConditionsMet();
 	}
 
 	public function test_get_option_name() {

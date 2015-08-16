@@ -72,6 +72,8 @@ HTML;
 		$this->expectOutputString( $output );
 
 		$testee->render();
+
+		$this->assertConditionsMet();
 	}
 
 }

@@ -28,6 +28,8 @@ class TextDomainModelTest extends TestCase {
 		);
 
 		$testee->load();
+
+		$this->assertConditionsMet();
 	}
 
 }

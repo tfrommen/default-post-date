@@ -30,6 +30,8 @@ class SettingsFieldViewTest extends TestCase {
 		);
 
 		$testee->add();
+
+		$this->assertConditionsMet();
 	}
 
 	public function test_render() {
@@ -58,6 +60,8 @@ HTML;
 		$this->expectOutputString( $output );
 
 		$testee->render();
+
+		$this->assertConditionsMet();
 	}
 
 }
