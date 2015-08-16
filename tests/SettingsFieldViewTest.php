@@ -47,10 +47,12 @@ class SettingsFieldViewTest extends TestCase {
 
 		WP_Mock::wpPassthruFunction( 'esc_attr', array( 'times' => 1 ) );
 
-		$output = <<<HTML
+		$output = <<<'HTML'
 		<input type="text" id="default-post-date" name="_default_post_date"
 			value="1984-05-02" maxlength="10" placeholder="YYYY-MM-DD">
-		<p class="description">Please enter the default post date according to the <code>YYYY-MM-DD</code> date format.</p>
+		<p class="description">
+			Please enter the default post date according to the <code>YYYY-MM-DD</code> date format.
+		</p>
 HTML;
 
 		$this->expectOutputString( $output );

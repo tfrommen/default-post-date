@@ -40,15 +40,15 @@ class ScriptViewTest extends TestCase {
 
 		WP_Mock::wpPassthruFunction( 'esc_js', array( 'times' => 1 ) );
 
-		$output = <<<HTML
+		$output = <<<'HTML'
 		<script>
-			( function( \$ ) {
+			( function( $ ) {
 				'use strict';
 
-				var \$timestampdiv = \$( '#timestampdiv' );
+				var $timestampdiv = $( '#timestampdiv' );
 
-				if ( \$timestampdiv.length ) {
-					\$timestampdiv
+				if ( $timestampdiv.length ) {
+					$timestampdiv
 						.find( '#jj' ).attr( 'value', '02' )
 						.end()
 						.find( '#mm' )
@@ -60,10 +60,10 @@ class ScriptViewTest extends TestCase {
 						.find( '#a' ).attr( 'value', '1984' );
 				}
 
-				var \$timestamp = \$( '#timestamp' ).find( 'b' );
+				var $timestamp = $( '#timestamp' ).find( 'b' );
 
-				if ( \$timestamp.length ) {
-					\$timestamp.html( '1984-05-02' );
+				if ( $timestamp.length ) {
+					$timestamp.html( '1984-05-02' );
 				}
 			} )( jQuery );
 		</script>
