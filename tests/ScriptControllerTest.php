@@ -5,6 +5,16 @@ use WP_Mock\Tools\TestCase;
 
 class ScriptControllerTest extends TestCase {
 
+	public function test___construct() {
+
+		$view = Mockery::mock( 'tf\DefaultPostDate\Views\Script' );
+
+		/** @var tf\DefaultPostDate\Views\Script $view */
+		$testee = new Testee( $view );
+
+		$this->assertAttributeSame( $view, 'view', $testee );
+	}
+
 	public function test_initialize() {
 
 		$view = Mockery::mock( 'tf\DefaultPostDate\Views\Script' );

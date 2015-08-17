@@ -5,14 +5,32 @@ use WP_Mock\Tools\TestCase;
 
 class SettingsFieldViewTest extends TestCase {
 
+	public function test___construct() {
+
+		$option_name = '_default_post_date';
+
+		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
+		$settings->shouldReceive( 'get_option_name' )
+			->andReturn( $option_name );
+
+		/** @var tf\DefaultPostDate\Models\Settings $settings */
+		$testee = new Testee( $settings );
+
+		$this->assertAttributeSame( 'default-post-date', 'id', $testee );
+
+		$this->assertAttributeSame( $option_name, 'option_name', $testee );
+
+		$this->assertAttributeSame( $settings, 'settings', $testee );
+	}
+
 	public function test_add() {
 
-		$model = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
-		$model->shouldReceive( 'get_option_name' )
+		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
+		$settings->shouldReceive( 'get_option_name' )
 			->andReturn( '_default_post_date' );
 
-		/** @var tf\DefaultPostDate\Models\Settings $model */
-		$testee = new Testee( $model );
+		/** @var tf\DefaultPostDate\Models\Settings $settings */
+		$testee = new Testee( $settings );
 
 		WP_Mock::wpPassthruFunction( 'esc_html_x', array( 'times' => 1 ) );
 
@@ -36,14 +54,14 @@ class SettingsFieldViewTest extends TestCase {
 
 	public function test_render() {
 
-		$model = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
-		$model->shouldReceive( 'get_option_name' )
+		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
+		$settings->shouldReceive( 'get_option_name' )
 			->andReturn( '_default_post_date' );
-		$model->shouldReceive( 'get' )
+		$settings->shouldReceive( 'get' )
 			->andReturn( '1984-05-02' );
 
-		/** @var tf\DefaultPostDate\Models\Settings $model */
-		$testee = new Testee( $model );
+		/** @var tf\DefaultPostDate\Models\Settings $settings */
+		$testee = new Testee( $settings );
 
 		WP_Mock::wpPassthruFunction( 'esc_html_x', array( 'times' => 1 ) );
 

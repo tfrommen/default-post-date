@@ -5,6 +5,15 @@ use WP_Mock\Tools\TestCase;
 
 class SettingsModelTest extends TestCase {
 
+	public function test___construct() {
+
+		$testee = new Testee();
+
+		$this->assertAttributeSame( 'general', 'option_group', $testee );
+
+		$this->assertAttributeSame( '_default_post_date', 'option_name', $testee );
+	}
+
 	public function test_register() {
 
 		$testee = new Testee();

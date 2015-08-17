@@ -5,14 +5,24 @@ use WP_Mock\Tools\TestCase;
 
 class ScriptViewTest extends TestCase {
 
+	public function test___construct() {
+
+		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
+
+		/** @var tf\DefaultPostDate\Models\Settings $settings */
+		$testee = new Testee( $settings );
+
+		$this->assertAttributeSame( $settings, 'settings', $testee );
+	}
+
 	public function test_render_early_return() {
 
-		$model = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
-		$model->shouldReceive( 'get' )
+		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
+		$settings->shouldReceive( 'get' )
 			->andReturn( '' );
 
-		/** @var tf\DefaultPostDate\Models\Settings $model */
-		$testee = new Testee( $model );
+		/** @var tf\DefaultPostDate\Models\Settings $settings */
+		$testee = new Testee( $settings );
 
 		$this->expectOutputString( '' );
 
@@ -21,12 +31,12 @@ class ScriptViewTest extends TestCase {
 
 	public function test_render() {
 
-		$model = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
-		$model->shouldReceive( 'get' )
+		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
+		$settings->shouldReceive( 'get' )
 			->andReturn( '1984-05-02' );
 
-		/** @var tf\DefaultPostDate\Models\Settings $model */
-		$testee = new Testee( $model );
+		/** @var tf\DefaultPostDate\Models\Settings $settings */
+		$testee = new Testee( $settings );
 
 		WP_Mock::wpPassthruFunction( '__', array( 'times' => 1 ) );
 
