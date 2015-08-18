@@ -41,6 +41,9 @@ class Script {
 		}
 
 		$time = strtotime( $value );
+		if ( ! $time ) {
+			return;
+		}
 
 		$day = date( 'd', $time );
 		$month = date( 'm', $time );
