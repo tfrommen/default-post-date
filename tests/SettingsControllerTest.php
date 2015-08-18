@@ -5,21 +5,6 @@ use WP_Mock\Tools\TestCase;
 
 class SettingsControllerTest extends TestCase {
 
-	public function test___construct() {
-
-		$model = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
-
-		$view = Mockery::mock( 'tf\DefaultPostDate\Views\SettingsField' );
-
-		/** @var tf\DefaultPostDate\Models\Settings $model */
-		/** @var tf\DefaultPostDate\Views\SettingsField $view */
-		$testee = new Testee( $model, $view );
-
-		$this->assertAttributeSame( $model, 'model', $testee );
-
-		$this->assertAttributeSame( $view, 'view', $testee );
-	}
-
 	public function test_initialize() {
 
 		$model = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );

@@ -5,15 +5,6 @@ use WP_Mock\Tools\TestCase;
 
 class SettingsModelTest extends TestCase {
 
-	public function test___construct() {
-
-		$testee = new Testee();
-
-		$this->assertAttributeSame( 'general', 'option_group', $testee );
-
-		$this->assertAttributeSame( '_default_post_date', 'option_name', $testee );
-	}
-
 	public function test_register() {
 
 		$testee = new Testee();
@@ -35,39 +26,31 @@ class SettingsModelTest extends TestCase {
 		$this->assertConditionsMet();
 	}
 
-	public function test_sanitize_empty_string() {
+	/**
+	 * @param string $sanitized_value
+	 * @param string $value
+	 *
+	 * @dataProvider provide_sanitize_data
+	 */
+	public function test_sanitize( $sanitized_value, $value ) {
 
 		$testee = new Testee();
 
-		$this->assertSame( '', $testee->sanitize( '' ) );
+		$this->assertSame( $sanitized_value, $testee->sanitize( $value ) );
 	}
 
-	public function test_sanitize_invalid_date() {
+	/**
+	 * @return array
+	 */
+	public function provide_sanitize_data() {
 
-		$testee = new Testee();
-
-		$this->assertSame( '', $testee->sanitize( '' ) );
-	}
-
-	public function test_sanitize_invalid_day() {
-
-		$testee = new Testee();
-
-		$this->assertSame( '', $testee->sanitize( '1984-05-32' ) );
-	}
-
-	public function test_sanitize_invalid_month() {
-
-		$testee = new Testee();
-
-		$this->assertSame( '', $testee->sanitize( '1984-13-02' ) );
-	}
-
-	public function test_sanitize() {
-
-		$testee = new Testee();
-
-		$this->assertSame( $value = '1984-05-02', $testee->sanitize( $value ) );
+		return array(
+			array( '', '' ),
+			array( '', 'foo' ),
+			array( '', '1984-05-32' ),
+			array( '', '1984-13-02' ),
+			array( $value = '1984-05-02', $value ),
+		);
 	}
 
 	public function test_get() {
@@ -88,13 +71,6 @@ class SettingsModelTest extends TestCase {
 		$testee->get();
 
 		$this->assertConditionsMet();
-	}
-
-	public function test_get_option_name() {
-
-		$testee = new Testee();
-
-		$this->assertSame( '_default_post_date', $testee->get_option_name() );
 	}
 
 }

@@ -5,24 +5,6 @@ use WP_Mock\Tools\TestCase;
 
 class SettingsFieldViewTest extends TestCase {
 
-	public function test___construct() {
-
-		$option_name = '_default_post_date';
-
-		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
-		$settings->shouldReceive( 'get_option_name' )
-			->andReturn( $option_name );
-
-		/** @var tf\DefaultPostDate\Models\Settings $settings */
-		$testee = new Testee( $settings );
-
-		$this->assertAttributeSame( 'default-post-date', 'id', $testee );
-
-		$this->assertAttributeSame( $option_name, 'option_name', $testee );
-
-		$this->assertAttributeSame( $settings, 'settings', $testee );
-	}
-
 	public function test_add() {
 
 		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
@@ -54,11 +36,13 @@ class SettingsFieldViewTest extends TestCase {
 
 	public function test_render() {
 
+		$value = '1984-05-02';
+
 		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
 		$settings->shouldReceive( 'get_option_name' )
 			->andReturn( '_default_post_date' );
 		$settings->shouldReceive( 'get' )
-			->andReturn( '1984-05-02' );
+			->andReturn( $value );
 
 		/** @var tf\DefaultPostDate\Models\Settings $settings */
 		$testee = new Testee( $settings );
@@ -69,11 +53,12 @@ class SettingsFieldViewTest extends TestCase {
 
 		$output = <<<'HTML'
 		<input type="text" id="default-post-date" name="_default_post_date"
-			value="1984-05-02" maxlength="10" placeholder="YYYY-MM-DD">
+			value="%s" maxlength="10" placeholder="YYYY-MM-DD">
 		<p class="description">
 			Please enter the default post date according to the <code>YYYY-MM-DD</code> date format.
 		</p>
 HTML;
+		$output = sprintf( $output, $value );
 
 		$this->expectOutputString( $output );
 

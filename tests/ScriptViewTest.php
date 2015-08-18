@@ -5,50 +5,50 @@ use WP_Mock\Tools\TestCase;
 
 class ScriptViewTest extends TestCase {
 
-	public function test___construct() {
-
-		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
-
-		/** @var tf\DefaultPostDate\Models\Settings $settings */
-		$testee = new Testee( $settings );
-
-		$this->assertAttributeSame( $settings, 'settings', $testee );
-	}
-
-	public function test_render_early_return() {
+	/**
+	 * @param string $value
+	 * @param int    $times
+	 * @param string $output
+	 *
+	 * @dataProvider provide_render_data
+	 */
+	public function test_render( $value, $times, $output ) {
 
 		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
 		$settings->shouldReceive( 'get' )
-			->andReturn( '' );
+			->andReturn( $value );
 
 		/** @var tf\DefaultPostDate\Models\Settings $settings */
 		$testee = new Testee( $settings );
 
-		$this->expectOutputString( '' );
-
-		$testee->render();
-	}
-
-	public function test_render() {
-
-		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
-		$settings->shouldReceive( 'get' )
-			->andReturn( '1984-05-02' );
-
-		/** @var tf\DefaultPostDate\Models\Settings $settings */
-		$testee = new Testee( $settings );
-
-		WP_Mock::wpPassthruFunction( '__', array( 'times' => 1 ) );
+		WP_Mock::wpPassthruFunction( '__', array( 'times' => $times ) );
 
 		WP_Mock::wpFunction(
 			'date_i18n',
 			array(
-				'times'  => 1,
-				'return' => '1984-05-02',
+				'times'  => $times,
+				'return' => $value,
 			)
 		);
 
-		WP_Mock::wpPassthruFunction( 'esc_js', array( 'times' => 1 ) );
+		WP_Mock::wpPassthruFunction( 'esc_js', array( 'times' => $times ) );
+
+		$this->expectOutputString( $output );
+
+		$testee->render();
+
+		$this->assertConditionsMet();
+	}
+
+	/**
+	 * @return array
+	 */
+	public function provide_render_data() {
+
+		$year = '1984';
+		$month = '05';
+		$day = '02';
+		$date = "$year-$month-$day";
 
 		$output = <<<'HTML'
 		<script>
@@ -59,31 +59,37 @@ class ScriptViewTest extends TestCase {
 
 				if ( $timestampdiv.length ) {
 					$timestampdiv
-						.find( '#jj' ).attr( 'value', '02' )
+						.find( '#jj' ).attr( 'value', '%s' )
 						.end()
 						.find( '#mm' )
 						.find( 'option[selected="selected"]' ).removeAttr( 'selected' )
 						.end()
-						.find( 'option[value="05"]' ).attr( 'selected', 'selected' )
+						.find( 'option[value="%s"]' ).attr( 'selected', 'selected' )
 						.end()
 						.end()
-						.find( '#a' ).attr( 'value', '1984' );
+						.find( '#a' ).attr( 'value', '%s' );
 				}
 
 				var $timestamp = $( '#timestamp' ).find( 'b' );
 
 				if ( $timestamp.length ) {
-					$timestamp.html( '1984-05-02' );
+					$timestamp.html( '%s' );
 				}
 			} )( jQuery );
 		</script>
 HTML;
+		$output = sprintf(
+			$output,
+			$day,
+			$month,
+			$year,
+			$date
+		);
 
-		$this->expectOutputString( $output );
-
-		$testee->render();
-
-		$this->assertConditionsMet();
+		return array(
+			array( '', 0, '' ),
+			array( $date, 1, $output ),
+		);
 	}
 
 }
