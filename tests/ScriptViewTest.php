@@ -100,7 +100,7 @@ HTML;
 		$date = "$year-$month-$day";
 
 		return array(
-			'valid_set'         => array(
+			'default'           => array(
 				'output' => sprintf( $output, $day, $month, $year, $date ),
 				'value'  => $date,
 				'times'  => 1,

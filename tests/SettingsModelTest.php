@@ -37,7 +37,7 @@ class SettingsModelTest extends TestCase {
 		$value = '1984-05-02';
 
 		return array(
-			'valid_set'     => array(
+			'default'       => array(
 				'response' => $value,
 				'value'    => $value,
 			),
