@@ -21,17 +21,37 @@ class ScriptViewTest extends TestCase {
 		/** @var tf\DefaultPostDate\Models\Settings $settings */
 		$testee = new Testee( $settings );
 
-		WP_Mock::wpPassthruFunction( '__', array( 'times' => $times ) );
+		WP_Mock::wpPassthruFunction(
+			'__',
+			array(
+				'times' => $times,
+				'args'  => array(
+					WP_Mock\Functions::type( 'string' ),
+				),
+			)
+		);
 
 		WP_Mock::wpFunction(
 			'date_i18n',
 			array(
 				'times'  => $times,
+				'args' => array(
+					WP_Mock\Functions::type( 'string' ),
+					WP_Mock\Functions::type( 'int' ),
+				),
 				'return' => $value,
 			)
 		);
 
-		WP_Mock::wpPassthruFunction( 'esc_js', array( 'times' => $times ) );
+		WP_Mock::wpPassthruFunction(
+			'esc_js',
+			array(
+				'times' => $times,
+				'args' => array(
+					WP_Mock\Functions::type( 'string' ),
+				),
+			)
+		);
 
 		$this->expectOutputString( $output );
 
@@ -81,6 +101,7 @@ HTML;
 
 		return array(
 			array( '', 0, '' ),
+			array( 'invalid_timestamp', 0, '' ),
 			array( $date, 1, sprintf( $output, $day, $month, $year, $date ) ),
 		);
 	}

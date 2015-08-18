@@ -9,17 +9,7 @@ class SettingsModelTest extends TestCase {
 
 		$testee = new Testee();
 
-		WP_Mock::wpFunction(
-			'register_setting',
-			array(
-				'args'  => array(
-					'general',
-					'_default_post_date',
-					array( $testee, 'sanitize' ),
-				),
-				'times' => 1,
-			)
-		);
+		WP_Mock::wpFunction( 'register_setting', array( 'times' => 1 ) );
 
 		$testee->register();
 
@@ -59,16 +49,7 @@ class SettingsModelTest extends TestCase {
 
 		$testee = new Testee();
 
-		WP_Mock::wpFunction(
-			'get_option',
-			array(
-				'args'  => array(
-					'_default_post_date',
-					'',
-				),
-				'times' => 1,
-			)
-		);
+		WP_Mock::wpFunction( 'get_option', array( 'times' => 1 ) );
 
 		$testee->get();
 
