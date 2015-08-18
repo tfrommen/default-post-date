@@ -100,9 +100,21 @@ HTML;
 		$date = "$year-$month-$day";
 
 		return array(
-			array( sprintf( $output, $day, $month, $year, $date ), $date, 1 ),
-			array( '', '', 0 ),
-			array( '', 'invalid_timestamp', 0 ),
+			'valid_set'         => array(
+				'output' => sprintf( $output, $day, $month, $year, $date ),
+				'value'  => $date,
+				'times'  => 1,
+			),
+			'empty_value'       => array(
+				'output' => '',
+				'value'  => '',
+				'times'  => 0,
+			),
+			'invalid_timestamp' => array(
+				'output' => '',
+				'value'  => 'invalid_timestamp',
+				'times'  => 0,
+			),
 		);
 	}
 

@@ -37,11 +37,26 @@ class SettingsModelTest extends TestCase {
 		$value = '1984-05-02';
 
 		return array(
-			array( $value, $value ),
-			array( '', '' ),
-			array( '', 'foo' ),
-			array( '', '1984-05-32' ),
-			array( '', '1984-13-02' ),
+			'valid_set'     => array(
+				'response' => $value,
+				'value'    => $value,
+			),
+			'empty_value'   => array(
+				'response' => '',
+				'value'    => '',
+			),
+			'invalid_date'  => array(
+				'response' => '',
+				'value'    => 'foo',
+			),
+			'invalid_month' => array(
+				'response' => '',
+				'value'    => '1984-05-32',
+			),
+			'invalid_day'   => array(
+				'response' => '',
+				'value'    => '1984-13-02',
+			),
 		);
 	}
 
