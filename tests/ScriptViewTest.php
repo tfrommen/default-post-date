@@ -6,11 +6,11 @@ use WP_Mock\Tools\TestCase;
 class ScriptViewTest extends TestCase {
 
 	/**
+	 * @dataProvider provide_render_data
+	 *
 	 * @param string $output
 	 * @param string $value
 	 * @param int    $times
-	 *
-	 * @dataProvider provide_render_data
 	 */
 	public function test_render( $output, $value, $times ) {
 
@@ -35,7 +35,7 @@ class ScriptViewTest extends TestCase {
 			'date_i18n',
 			array(
 				'times'  => $times,
-				'args' => array(
+				'args'   => array(
 					WP_Mock\Functions::type( 'string' ),
 					WP_Mock\Functions::type( 'int' ),
 				),
@@ -47,7 +47,7 @@ class ScriptViewTest extends TestCase {
 			'esc_js',
 			array(
 				'times' => $times,
-				'args' => array(
+				'args'  => array(
 					WP_Mock\Functions::type( 'string' ),
 				),
 			)
@@ -100,9 +100,9 @@ HTML;
 		$date = "$year-$month-$day";
 
 		return array(
+			array( sprintf( $output, $day, $month, $year, $date ), $date, 1 ),
 			array( '', '', 0 ),
 			array( '', 'invalid_timestamp', 0 ),
-			array( sprintf( $output, $day, $month, $year, $date ), $date, 1 ),
 		);
 	}
 

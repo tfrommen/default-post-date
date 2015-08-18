@@ -19,14 +19,14 @@ class SettingsModelTest extends TestCase {
 	/**
 	 * @dataProvider provide_sanitize_data
 	 *
-	 * @param string $sanitized_value
+	 * @param string $response
 	 * @param string $value
 	 */
-	public function test_sanitize( $sanitized_value, $value ) {
+	public function test_sanitize( $response, $value ) {
 
 		$testee = new Testee();
 
-		$this->assertSame( $sanitized_value, $testee->sanitize( $value ) );
+		$this->assertSame( $response, $testee->sanitize( $value ) );
 	}
 
 	/**
@@ -37,11 +37,11 @@ class SettingsModelTest extends TestCase {
 		$value = '1984-05-02';
 
 		return array(
+			array( $value, $value ),
 			array( '', '' ),
 			array( '', 'foo' ),
 			array( '', '1984-05-32' ),
 			array( '', '1984-13-02' ),
-			array( $value, $value ),
 		);
 	}
 
