@@ -75,7 +75,7 @@ class Script {
 				}
 			} )( jQuery );
 		</script>
-	<?php
+		<?php
 	}
 
 }
