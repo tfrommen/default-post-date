@@ -6,13 +6,13 @@ use WP_Mock\Tools\TestCase;
 class ScriptViewTest extends TestCase {
 
 	/**
+	 * @param string $output
 	 * @param string $value
 	 * @param int    $times
-	 * @param string $output
 	 *
 	 * @dataProvider provide_render_data
 	 */
-	public function test_render( $value, $times, $output ) {
+	public function test_render( $output, $value, $times ) {
 
 		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
 		$settings->shouldReceive( 'get' )
@@ -100,9 +100,9 @@ HTML;
 		$date = "$year-$month-$day";
 
 		return array(
-			array( '', 0, '' ),
-			array( 'invalid_timestamp', 0, '' ),
-			array( $date, 1, sprintf( $output, $day, $month, $year, $date ) ),
+			array( '', '', 0 ),
+			array( '', 'invalid_timestamp', 0 ),
+			array( sprintf( $output, $day, $month, $year, $date ), $date, 1 ),
 		);
 	}
 
