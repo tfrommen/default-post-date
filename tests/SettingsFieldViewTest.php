@@ -7,21 +7,33 @@ class SettingsFieldViewTest extends TestCase {
 
 	public function test_add() {
 
+		$option_name = '_default_post_date';
+
 		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
 		$settings->shouldReceive( 'get_option_name' )
-			->andReturn( '_default_post_date' );
+			->andReturn( $option_name );
 
 		/** @var tf\DefaultPostDate\Models\Settings $settings */
 		$testee = new Testee( $settings );
 
-		WP_Mock::wpPassthruFunction( 'esc_html_x', array( 'times' => 1 ) );
+		$label_text = 'Label text';
+
+		WP_Mock::wpFunction(
+			'esc_html_x',
+			array(
+				'times'  => 1,
+				'return' => $label_text,
+			)
+		);
+
+		$title = sprintf( '<label for="default-post-date">%s</label>', $label_text );
 
 		WP_Mock::wpFunction(
 			'add_settings_field',
 			array(
 				'args'  => array(
-					'_default_post_date',
-					'<label for="default-post-date">Default Post Date</label>',
+					$option_name = '_default_post_date',
+					$title,
 					array( $testee, 'render' ),
 					'general',
 				),

@@ -27,10 +27,10 @@ class SettingsModelTest extends TestCase {
 	}
 
 	/**
+	 * @dataProvider provide_sanitize_data
+	 *
 	 * @param string $sanitized_value
 	 * @param string $value
-	 *
-	 * @dataProvider provide_sanitize_data
 	 */
 	public function test_sanitize( $sanitized_value, $value ) {
 
@@ -44,12 +44,14 @@ class SettingsModelTest extends TestCase {
 	 */
 	public function provide_sanitize_data() {
 
+		$value = '1984-05-02';
+
 		return array(
 			array( '', '' ),
 			array( '', 'foo' ),
 			array( '', '1984-05-32' ),
 			array( '', '1984-13-02' ),
-			array( $value = '1984-05-02', $value ),
+			array( $value, $value ),
 		);
 	}
 

@@ -13,7 +13,7 @@ class TextDomainModelTest extends TestCase {
 
 		$testee = new Testee( $file );
 
-		$dir = dirname( $file );
+		$path = dirname( $file ) . '/languages';
 
 		WP_Mock::wpFunction(
 			'load_plugin_textdomain',
@@ -21,7 +21,7 @@ class TextDomainModelTest extends TestCase {
 				'args'  => array(
 					'default-post-date',
 					FALSE,
-					$dir . '/languages',
+					$path,
 				),
 				'times' => 1,
 			)

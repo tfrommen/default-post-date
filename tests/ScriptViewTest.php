@@ -45,11 +45,6 @@ class ScriptViewTest extends TestCase {
 	 */
 	public function provide_render_data() {
 
-		$year = '1984';
-		$month = '05';
-		$day = '02';
-		$date = "$year-$month-$day";
-
 		$output = <<<'HTML'
 		<script>
 			( function( $ ) {
@@ -78,17 +73,15 @@ class ScriptViewTest extends TestCase {
 			} )( jQuery );
 		</script>
 HTML;
-		$output = sprintf(
-			$output,
-			$day,
-			$month,
-			$year,
-			$date
-		);
+
+		$year = '1984';
+		$month = '05';
+		$day = '02';
+		$date = "$year-$month-$day";
 
 		return array(
 			array( '', 0, '' ),
-			array( $date, 1, $output ),
+			array( $date, 1, sprintf( $output, $day, $month, $year, $date ) ),
 		);
 	}
 
