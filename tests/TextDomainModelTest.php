@@ -26,12 +26,12 @@ class TextDomainModelTest extends TestCase {
 		WP_Mock::wpFunction(
 			'load_plugin_textdomain',
 			array(
+				'times' => 1,
 				'args'  => array(
 					'default-post-date',
 					FALSE,
 					$path,
 				),
-				'times' => 1,
 			)
 		);
 
