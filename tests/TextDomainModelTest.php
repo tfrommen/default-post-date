@@ -9,7 +9,15 @@ class TextDomainModelTest extends TestCase {
 
 		$file = '/path/to/file.php';
 
-		WP_Mock::wpPassthruFunction( 'plugin_basename', array( 'times' => 1 ) );
+		WP_Mock::wpPassthruFunction(
+			'plugin_basename',
+			array(
+				'times' => 1,
+				'args'  => array(
+					WP_Mock\Functions::type( 'string' ),
+				),
+			)
+		);
 
 		$testee = new Testee( $file );
 
