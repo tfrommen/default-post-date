@@ -3,7 +3,7 @@ Contributors: ipm-frommen
 Donate link: http://ipm-frommen.de/wordpress
 Tags: post, posts, date, bulk, publish
 Requires at least: 2.9.0
-Tested up to: 4.2.4
+Tested up to: 4.3
 Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -41,6 +41,10 @@ This plugin requires PHP 5.3.
 1. **Setting** - Here you can define the default post date.
 
 == Changelog ==
+
+= 1.3.2 =
+* Code styling and house cleaning.
+* Compatible up to WordPress 4.3.
 
 = 1.3.1 =
 * Escape translated strings.

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.2
+- Code styling and house cleaning.
+- Compatible up to WordPress 4.3.
+
 ## 1.3.1
 - Escape translated strings.
 - Compatible up to WordPress 4.2.4.
