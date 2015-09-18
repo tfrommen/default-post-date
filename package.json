@@ -1,0 +1,32 @@
+{
+	"name": "default-post-date",
+	"version": "1.4.0",
+	"description": "Define an individual default post date that is to be used when adding a new post.",
+	"keywords": [
+		"bulk",
+		"date",
+		"post",
+		"posts",
+		"publish"
+	],
+	"homepage": "https://github.com/tfrommen/default-post-date",
+	"bugs": "https://github.com/tfrommen/default-post-date/issues",
+	"license": "GPL-3.0",
+	"author": {
+		"name": "Thorsten Frommen",
+		"email": "info@tfrommen.de",
+		"url": "http://tfrommen.de"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/inpsyde/multilingual-press"
+	},
+	"devDependencies": {
+		"grunt": "^0.4.5",
+		"grunt-contrib-jshint": "^0.11.2",
+		"grunt-contrib-watch": "^0.6.1",
+		"grunt-glotpress": "^0.2.1",
+		"grunt-wp-i18n": "^0.5.2",
+		"load-grunt-tasks": "^3.2.0"
+	}
+}
