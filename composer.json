@@ -1,6 +1,7 @@
 {
 	"name": "tfrommen/default-post-date",
 	"description": "Define an individual default post date that is to be used when adding a new post.",
+	"type": "wordpress-plugin",
 	"keywords": [
 		"bulk",
 		"date",
@@ -13,14 +14,29 @@
 	"authors": [
 		{
 			"name": "Thorsten Frommen",
-			"email": "tf@ipm-frommen.de",
-			"homepage": "http://ipm-frommen.de/wordpress"
+			"email": "info@tfrommen.de",
+			"homepage": "http://tfrommen.de",
+			"role": "Developer"
 		}
 	],
+	"support": {
+		"issues": "https://github.com/tfrommen/default-post-date/issues",
+		"forum": "https://wordpress.org/support/plugin/default-post-date",
+		"source": "https://github.com/tfrommen/default-post-date"
+	},
 	"require": {
-		"php": ">=5.3.3"
+		"php": ">=5.2.4",
+		"composer/installers": "~1.0"
 	},
 	"require-dev": {
-		"10up/wp_mock": "dev-master"
+		"php": ">=5.3.3",
+		"10up/wp_mock": "dev-master",
+		"mockery/mockery": "~0.9.4",
+		"phpunit/phpunit": "~4.0"
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.5.x-dev"
+		}
 	}
 }
