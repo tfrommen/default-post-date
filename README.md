@@ -13,6 +13,11 @@ This is exactly when _Default Post Date_ kicks in.
 1. Activate the plugin through the _Plugins_ menu in WordPress.
 1. Find the new _Default Post Date_ setting on the _General Settings_ page in your WordPress backend.
 
+## Screenshots
+
+![Setting](assets/screenshot-1.png)  
+**Setting** - Here you can define the default post date.
+
 ## Contribution
 
 If you have a feature request, or if you have developed the feature already, please feel free to use the Issues and/or Pull Requests section.
