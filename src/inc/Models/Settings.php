@@ -1,11 +1,11 @@
 <?php # -*- coding: utf-8 -*-
 
-namespace tf\DefaultPostDate\Models;
+namespace tfrommen\DefaultPostDate\Models;
 
 /**
- * Class Settings
+ * Settings model.
  *
- * @package tf\DefaultPostDate\Models
+ * @package tfrommen\DefaultPostDate\Models
  */
 class Settings {
 
@@ -20,7 +20,7 @@ class Settings {
 	private $option_name = '_default_post_date';
 
 	/**
-	 * Register the settings.
+	 * Register the setting.
 	 *
 	 * @wp-hook init
 	 *
@@ -28,11 +28,7 @@ class Settings {
 	 */
 	public function register() {
 
-		register_setting(
-			$this->option_group,
-			$this->option_name,
-			array( $this, 'sanitize' )
-		);
+		register_setting( $this->option_group, $this->option_name, array( $this, 'sanitize' ) );
 	}
 
 	/**
@@ -53,7 +49,7 @@ class Settings {
 	}
 
 	/**
-	 * Get the option value.
+	 * Return the option value.
 	 *
 	 * @return string
 	 */
@@ -63,7 +59,7 @@ class Settings {
 	}
 
 	/**
-	 * Get the option name.
+	 * Return the option name.
 	 *
 	 * @return string
 	 */

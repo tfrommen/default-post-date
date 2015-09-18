@@ -1,14 +1,14 @@
 <?php # -*- coding: utf-8 -*-
 
-namespace tf\DefaultPostDate\Controllers;
+namespace tfrommen\DefaultPostDate\Controllers;
 
-use tf\DefaultPostDate\Models\Settings as Model;
-use tf\DefaultPostDate\Views\SettingsField as View;
+use tfrommen\DefaultPostDate\Models\Settings as Model;
+use tfrommen\DefaultPostDate\Views\SettingsField as View;
 
 /**
- * Class Settings
+ * Settings controller.
  *
- * @package tf\DefaultPostDate\Controllers
+ * @package tfrommen\DefaultPostDate\Controllers
  */
 class Settings {
 
@@ -43,6 +43,7 @@ class Settings {
 	public function initialize() {
 
 		add_action( 'admin_init', array( $this->model, 'register' ) );
+
 		add_action( 'admin_init', array( $this->view, 'add' ) );
 	}
 

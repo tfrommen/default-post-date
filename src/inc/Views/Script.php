@@ -1,13 +1,13 @@
 <?php # -*- coding: utf-8 -*-
 
-namespace tf\DefaultPostDate\Views;
+namespace tfrommen\DefaultPostDate\Views;
 
-use tf\DefaultPostDate\Models\Settings;
+use tfrommen\DefaultPostDate\Models\Settings;
 
 /**
- * Class Script
+ * Script view.
  *
- * @package tf\DefaultPostDate\Views
+ * @package tfrommen\DefaultPostDate\Views
  */
 class Script {
 
@@ -36,7 +36,7 @@ class Script {
 	public function render() {
 
 		$value = $this->settings->get();
-		if ( $value === '' ) {
+		if ( ! $value ) {
 			return;
 		}
 
@@ -45,11 +45,7 @@ class Script {
 			return;
 		}
 
-		$day = date( 'd', $time );
-		$month = date( 'm', $time );
-		$year = date( 'Y', $time );
-
-		$datef = __( 'M j, Y @ G:i' );
+		$datef = _x( 'M j, Y @ G:i', 'skip' );
 		$date = date_i18n( $datef, $time );
 		?>
 		<script>
@@ -60,15 +56,15 @@ class Script {
 
 				if ( $timestampdiv.length ) {
 					$timestampdiv
-						.find( '#jj' ).attr( 'value', '<?php echo $day; ?>' )
+						.find( '#jj' ).attr( 'value', '<?php echo date( 'd', $time ); ?>' )
 						.end()
 						.find( '#mm' )
 						.find( 'option[selected="selected"]' ).removeAttr( 'selected' )
 						.end()
-						.find( 'option[value="<?php echo $month; ?>"]' ).attr( 'selected', 'selected' )
+						.find( 'option[value="<?php echo date( 'm', $time ); ?>"]' ).attr( 'selected', 'selected' )
 						.end()
 						.end()
-						.find( '#a' ).attr( 'value', '<?php echo $year; ?>' );
+						.find( '#a' ).attr( 'value', '<?php echo date( 'Y', $time ); ?>' );
 				}
 
 				var $timestamp = $( '#timestamp' ).find( 'b' );

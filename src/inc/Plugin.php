@@ -1,11 +1,11 @@
 <?php # -*- coding: utf-8 -*-
 
-namespace tf\DefaultPostDate;
+namespace tfrommen\DefaultPostDate;
 
 /**
- * Class Plugin
+ * Main controller.
  *
- * @package tf\DefaultPostDate
+ * @package tfrommen\DefaultPostDate
  */
 class Plugin {
 

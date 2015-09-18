@@ -1,11 +1,11 @@
 <?php # -*- coding: utf-8 -*-
 
-namespace tf\DefaultPostDate\Models;
+namespace tfrommen\DefaultPostDate\Models;
 
 /**
- * Class TextDomain
+ * Text domain model.
  *
- * @package tf\DefaultPostDate\Models
+ * @package tfrommen\DefaultPostDate\Models
  */
 class TextDomain {
 

@@ -1,13 +1,13 @@
 <?php # -*- coding: utf-8 -*-
 
-namespace tf\DefaultPostDate\Views;
+namespace tfrommen\DefaultPostDate\Views;
 
-use tf\DefaultPostDate\Models\Settings;
+use tfrommen\DefaultPostDate\Models\Settings;
 
 /**
- * Class SettingsField
+ * Settings field view.
  *
- * @package tf\DefaultPostDate\Views
+ * @package tfrommen\DefaultPostDate\Views
  */
 class SettingsField {
 
@@ -67,11 +67,14 @@ class SettingsField {
 			'Settings field description, %s = date format',
 			'default-post-date'
 		);
+
+		$date_format = 'YYYY-MM-DD';
 		?>
 		<input type="text" id="<?php echo $this->id; ?>" name="<?php echo $this->settings->get_option_name(); ?>"
-			value="<?php echo esc_attr( $this->settings->get() ); ?>" maxlength="10" placeholder="YYYY-MM-DD">
+			value="<?php echo esc_attr( $this->settings->get() ); ?>" maxlength="10"
+			placeholder="<?php echo $date_format; ?>">
 		<p class="description">
-			<?php printf( $description, '<code>YYYY-MM-DD</code>' ); ?>
+			<?php printf( $description, "<code>$date_format</code>" ); ?>
 		</p>
 		<?php
 	}

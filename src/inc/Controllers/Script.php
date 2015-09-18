@@ -1,13 +1,13 @@
 <?php # -*- coding: utf-8 -*-
 
-namespace tf\DefaultPostDate\Controllers;
+namespace tfrommen\DefaultPostDate\Controllers;
 
-use tf\DefaultPostDate\Views\Script as View;
+use tfrommen\DefaultPostDate\Views\Script as View;
 
 /**
- * Class Script
+ * Script controller.
  *
- * @package tf\DefaultPostDate\Controllers
+ * @package tfrommen\DefaultPostDate\Controllers
  */
 class Script {
 
@@ -19,7 +19,7 @@ class Script {
 	/**
 	 * Constructor. Set up the properties.
 	 *
-	 * @param View $view Script tag view.
+	 * @param View $view Script view.
 	 */
 	public function __construct( View $view ) {
 
