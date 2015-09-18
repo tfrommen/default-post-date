@@ -1,5 +1,10 @@
 # Default Post Date
 
+[![Latest Stable Version](https://poser.pugx.org/tfrommen/default-post-date/v/stable)](https://packagist.org/packages/tfrommen/default-post-date)
+[![Project Status](http://opensource.box.com/badges/active.svg)](http://opensource.box.com/badges)
+[![Build Status](https://travis-ci.org/tfrommen/default-post-date.svg?branch=master)](http://travis-ci.org/tfrommen/default-post-date)
+[![License](https://poser.pugx.org/tfrommen/default-post-date/license)](https://packagist.org/packages/tfrommen/default-post-date)
+
 Have you ever had to create a fair amount of posts that all should be published on an individual date other than today?
 
 Maybe some reviews of an event a while back? Or a bunch of essays scheduled for the day after tomorrow?
