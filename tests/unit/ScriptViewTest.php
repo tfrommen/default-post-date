@@ -1,11 +1,15 @@
 <?php # -*- coding: utf-8 -*-
 
-use tf\DefaultPostDate\Views\Script as Testee;
+use tfrommen\DefaultPostDate\Views\Script as Testee;
 use WP_Mock\Tools\TestCase;
 
+/**
+ * Test case for the ScriptView class.
+ */
 class ScriptViewTest extends TestCase {
 
 	/**
+	 * @covers       tfrommen\DefaultPostDate\Views\Script::render
 	 * @dataProvider provide_render_data
 	 *
 	 * @param string $output
@@ -14,19 +18,21 @@ class ScriptViewTest extends TestCase {
 	 */
 	public function test_render( $output, $value, $times ) {
 
-		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
-		$settings->shouldReceive( 'get' )
-			->andReturn( $value );
+		/** @var tfrommen\DefaultPostDate\Models\Settings $settings */
+		$settings = Mockery::mock( 'tfrommen\DefaultPostDate\Models\Settings' )
+			->shouldReceive( 'get' )
+			->andReturn( $value )
+			->getMock();
 
-		/** @var tf\DefaultPostDate\Models\Settings $settings */
 		$testee = new Testee( $settings );
 
 		WP_Mock::wpPassthruFunction(
-			'__',
+			'_x',
 			array(
 				'times' => $times,
 				'args'  => array(
 					WP_Mock\Functions::type( 'string' ),
+					'skip',
 				),
 			)
 		);
@@ -95,8 +101,11 @@ class ScriptViewTest extends TestCase {
 HTML;
 
 		$year = '1984';
+
 		$month = '05';
+
 		$day = '02';
+
 		$date = "$year-$month-$day";
 
 		return array(

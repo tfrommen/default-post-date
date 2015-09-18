@@ -1,10 +1,18 @@
 <?php # -*- coding: utf-8 -*-
 
-use tf\DefaultPostDate\Models\TextDomain as Testee;
+use tfrommen\DefaultPostDate\Models\TextDomain as Testee;
 use WP_Mock\Tools\TestCase;
 
+/**
+ * Test case for the TextDomainModel class.
+ */
 class TextDomainModelTest extends TestCase {
 
+	/**
+	 * @covers tfrommen\DefaultPostDate\Models\TextDomain::load
+	 *
+	 * @return void
+	 */
 	public function test_load() {
 
 		$file = '/path/to/file.php';

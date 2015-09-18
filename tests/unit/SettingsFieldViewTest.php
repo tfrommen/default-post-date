@@ -1,17 +1,26 @@
 <?php # -*- coding: utf-8 -*-
 
-use tf\DefaultPostDate\Views\SettingsField as Testee;
+use tfrommen\DefaultPostDate\Views\SettingsField as Testee;
 use WP_Mock\Tools\TestCase;
 
+/**
+ * Test case for the SettingsFieldView class.
+ */
 class SettingsFieldViewTest extends TestCase {
 
+	/**
+	 * @covers tfrommen\DefaultPostDate\Views\SettingsField::add
+	 *
+	 * @return void
+	 */
 	public function test_add() {
 
-		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
-		$settings->shouldReceive( 'get_option_name' )
-			->andReturn( 'option_name' );
+		/** @var tfrommen\DefaultPostDate\Models\Settings $settings */
+		$settings = Mockery::mock( 'tfrommen\DefaultPostDate\Models\Settings' )
+			->shouldReceive( 'get_option_name' )
+			->andReturn( 'option_name' )
+			->getMock();
 
-		/** @var tf\DefaultPostDate\Models\Settings $settings */
 		$testee = new Testee( $settings );
 
 		WP_Mock::wpFunction(
@@ -44,19 +53,26 @@ class SettingsFieldViewTest extends TestCase {
 		$this->assertConditionsMet();
 	}
 
+	/**
+	 * @covers tfrommen\DefaultPostDate\Views\SettingsField::render
+	 *
+	 * @return void
+	 */
 	public function test_render() {
 
 		$option_name = 'option_name';
 
 		$value = '1984-05-02';
 
-		$settings = Mockery::mock( 'tf\DefaultPostDate\Models\Settings' );
-		$settings->shouldReceive( 'get_option_name' )
-			->andReturn( $option_name );
-		$settings->shouldReceive( 'get' )
-			->andReturn( $value );
+		/** @var tfrommen\DefaultPostDate\Models\Settings $settings */
+		$settings = Mockery::mock( 'tfrommen\DefaultPostDate\Models\Settings' )
+			->shouldReceive( 'get_option_name' )
+			->andReturn( $option_name )
+			->getMock()
+			->shouldReceive( 'get' )
+			->andReturn( $value )
+			->getMock();
 
-		/** @var tf\DefaultPostDate\Models\Settings $settings */
 		$testee = new Testee( $settings );
 
 		WP_Mock::wpPassthruFunction(
@@ -83,7 +99,8 @@ class SettingsFieldViewTest extends TestCase {
 
 		$output = <<<'HTML'
 		<input type="text" id="default-post-date" name="%s"
-			value="%s" maxlength="10" placeholder="YYYY-MM-DD">
+			value="%s" maxlength="10"
+			placeholder="YYYY-MM-DD">
 		<p class="description">
 			Please enter the default post date according to the <code>YYYY-MM-DD</code> date format.
 		</p>

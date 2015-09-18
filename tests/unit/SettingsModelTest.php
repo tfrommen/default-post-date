@@ -1,10 +1,18 @@
 <?php # -*- coding: utf-8 -*-
 
-use tf\DefaultPostDate\Models\Settings as Testee;
+use tfrommen\DefaultPostDate\Models\Settings as Testee;
 use WP_Mock\Tools\TestCase;
 
+/**
+ * Test case for the SettingsModel class.
+ */
 class SettingsModelTest extends TestCase {
 
+	/**
+	 * @covers tfrommen\DefaultPostDate\Models\Settings::register
+	 *
+	 * @return void
+	 */
 	public function test_register() {
 
 		$testee = new Testee();
@@ -27,6 +35,7 @@ class SettingsModelTest extends TestCase {
 	}
 
 	/**
+	 * @covers       tfrommen\DefaultPostDate\Models\Settings::sanitize
 	 * @dataProvider provide_sanitize_data
 	 *
 	 * @param string $response
@@ -70,6 +79,11 @@ class SettingsModelTest extends TestCase {
 		);
 	}
 
+	/**
+	 * @covers tfrommen\DefaultPostDate\Models\Settings::get
+	 *
+	 * @return void
+	 */
 	public function test_get() {
 
 		$testee = new Testee();
