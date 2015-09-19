@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1
+* Move settings field to Writing Settings.
+* Rename plugin option.
+
 ## 1.4.0
 * Change namespace root to 'tfrommen'.
 * Compatible up to WordPress 4.3.1.

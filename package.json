@@ -1,6 +1,6 @@
 {
 	"name": "default-post-date",
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"description": "Define an individual default post date that is to be used when adding a new post.",
 	"keywords": [
 		"bulk",

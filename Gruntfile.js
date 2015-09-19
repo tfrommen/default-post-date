@@ -46,14 +46,12 @@ module.exports = function( grunt ) {
 						'x-poedit-keywordslist': true
 					},
 					processPot : function( pot ) {
-						// Skip translations marked with context 'skip'
-						delete pot.translations.skip;
-
 						var exclude = [
 							'Plugin Name of the plugin/theme',
 							'Plugin URI of the plugin/theme',
 							'Author of the plugin/theme',
-							'Author URI of the plugin/theme'
+							'Author URI of the plugin/theme',
+						    'translators: do not translate'
 						];
 
 						// Skip translations with the above defined meta comments

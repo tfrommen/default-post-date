@@ -13,10 +13,10 @@ This is exactly when _Default Post Date_ kicks in.
 
 ## Installation
 
-1. [Download ZIP](https://github.com/tfrommen/default-post-date/archive/master.zip).
+1. [Download ZIP](https://downloads.wordpress.org/plugin/default-post-date.zip).
 1. Upload contents to the `/wp-content/plugins` directory on your web server.
 1. Activate the plugin through the _Plugins_ menu in WordPress.
-1. Find the new _Default Post Date_ setting on the _General Settings_ page in your WordPress backend.
+1. Find the new _Default Post Date_ setting on the _Writing Settings_ page in your WordPress backend.
 
 ## Screenshots
 
