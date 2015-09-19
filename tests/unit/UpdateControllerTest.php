@@ -15,7 +15,6 @@ class UpdateControllerTest extends TestCase {
 	 * @param bool   $expected
 	 * @param string $version
 	 * @param string $old_version
-	 * @param bool   $is_current_version
 	 * @param string $default_post_date
 	 *
 	 * @return void
@@ -24,7 +23,6 @@ class UpdateControllerTest extends TestCase {
 		$expected,
 		$version,
 		$old_version,
-		$is_current_version,
 		$default_post_date
 	) {
 
@@ -41,7 +39,7 @@ class UpdateControllerTest extends TestCase {
 			)
 		);
 
-		if ( ! $is_current_version ) {
+		if ( $old_version !== $version ) {
 			if ( version_compare( $old_version, '1.4.1' ) ) {
 				WP_Mock::wpFunction(
 					'get_option',
@@ -111,28 +109,24 @@ class UpdateControllerTest extends TestCase {
 				'expected'           => TRUE,
 				'version'            => $version,
 				'old_version'        => '',
-				'is_current_version' => FALSE,
 				'default_post_date'  => '',
 			),
 			'old_version_no_default_post_date' => array(
 				'expected'           => TRUE,
 				'version'            => $version,
 				'old_version'        => '0',
-				'is_current_version' => FALSE,
 				'default_post_date'  => '',
 			),
 			'old_version'                      => array(
 				'expected'           => TRUE,
 				'version'            => $version,
 				'old_version'        => '0',
-				'is_current_version' => FALSE,
 				'default_post_date'  => $default_post_date,
 			),
 			'current_version'                  => array(
 				'expected'           => FALSE,
 				'version'            => $version,
 				'old_version'        => $version,
-				'is_current_version' => TRUE,
 				'default_post_date'  => $default_post_date,
 			),
 		);
