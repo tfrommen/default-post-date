@@ -45,7 +45,8 @@ class Script {
 			return;
 		}
 
-		$datef = _x( 'M j, Y @ G:i', 'skip' );
+		/* translators: do not translate */
+		$datef = __( 'M j, Y @ G:i' );
 		$date = date_i18n( $datef, $time );
 		?>
 		<script>
