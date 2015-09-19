@@ -106,28 +106,28 @@ class UpdateControllerTest extends TestCase {
 
 		return array(
 			'no_version'                       => array(
-				'expected'           => TRUE,
-				'version'            => $version,
-				'old_version'        => '',
-				'default_post_date'  => '',
+				'expected'          => TRUE,
+				'version'           => $version,
+				'old_version'       => '',
+				'default_post_date' => '',
 			),
 			'old_version_no_default_post_date' => array(
-				'expected'           => TRUE,
-				'version'            => $version,
-				'old_version'        => '0',
-				'default_post_date'  => '',
+				'expected'          => TRUE,
+				'version'           => $version,
+				'old_version'       => '0',
+				'default_post_date' => '',
 			),
 			'old_version'                      => array(
-				'expected'           => TRUE,
-				'version'            => $version,
-				'old_version'        => '0',
-				'default_post_date'  => $default_post_date,
+				'expected'          => TRUE,
+				'version'           => $version,
+				'old_version'       => '0',
+				'default_post_date' => $default_post_date,
 			),
 			'current_version'                  => array(
-				'expected'           => FALSE,
-				'version'            => $version,
-				'old_version'        => $version,
-				'default_post_date'  => $default_post_date,
+				'expected'          => FALSE,
+				'version'           => $version,
+				'old_version'       => $version,
+				'default_post_date' => $default_post_date,
 			),
 		);
 	}
