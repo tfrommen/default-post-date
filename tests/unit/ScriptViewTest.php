@@ -14,9 +14,9 @@ class ScriptViewTest extends TestCase {
 	 *
 	 * @param string $output
 	 * @param string $value
-	 * @param int    $times
+	 * @param bool   $render
 	 */
-	public function test_render( $output, $value, $times ) {
+	public function test_render( $output, $value, $render ) {
 
 		/** @var tfrommen\DefaultPostDate\Models\Settings $settings */
 		$settings = Mockery::mock( 'tfrommen\DefaultPostDate\Models\Settings' )
@@ -26,38 +26,39 @@ class ScriptViewTest extends TestCase {
 
 		$testee = new Testee( $settings );
 
-		WP_Mock::wpPassthruFunction(
-			'_x',
-			array(
-				'times' => $times,
-				'args'  => array(
-					WP_Mock\Functions::type( 'string' ),
-					'skip',
-				),
-			)
-		);
+		if ( $render ) {
+			WP_Mock::wpPassthruFunction(
+				'__',
+				array(
+					'times' => 1,
+					'args'  => array(
+						WP_Mock\Functions::type( 'string' ),
+					),
+				)
+			);
 
-		WP_Mock::wpFunction(
-			'date_i18n',
-			array(
-				'times'  => $times,
-				'args'   => array(
-					WP_Mock\Functions::type( 'string' ),
-					WP_Mock\Functions::type( 'int' ),
-				),
-				'return' => $value,
-			)
-		);
+			WP_Mock::wpFunction(
+				'date_i18n',
+				array(
+					'times'  => 1,
+					'args'   => array(
+						WP_Mock\Functions::type( 'string' ),
+						WP_Mock\Functions::type( 'int' ),
+					),
+					'return' => $value,
+				)
+			);
 
-		WP_Mock::wpPassthruFunction(
-			'esc_js',
-			array(
-				'times' => $times,
-				'args'  => array(
-					WP_Mock\Functions::type( 'string' ),
-				),
-			)
-		);
+			WP_Mock::wpPassthruFunction(
+				'esc_js',
+				array(
+					'times' => 1,
+					'args'  => array(
+						WP_Mock\Functions::type( 'string' ),
+					),
+				)
+			);
+		}
 
 		$this->expectOutputString( $output );
 
@@ -112,17 +113,17 @@ HTML;
 			'default'           => array(
 				'output' => sprintf( $output, $day, $month, $year, $date ),
 				'value'  => $date,
-				'times'  => 1,
+				'render' => TRUE,
 			),
 			'empty_value'       => array(
 				'output' => '',
 				'value'  => '',
-				'times'  => 0,
+				'render' => FALSE,
 			),
 			'invalid_timestamp' => array(
 				'output' => '',
 				'value'  => 'invalid_timestamp',
-				'times'  => 0,
+				'render' => FALSE,
 			),
 		);
 	}

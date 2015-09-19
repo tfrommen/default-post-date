@@ -38,14 +38,14 @@ class SettingsModelTest extends TestCase {
 	 * @covers       tfrommen\DefaultPostDate\Models\Settings::sanitize
 	 * @dataProvider provide_sanitize_data
 	 *
-	 * @param string $response
+	 * @param string $expected
 	 * @param string $value
 	 */
-	public function test_sanitize( $response, $value ) {
+	public function test_sanitize( $expected, $value ) {
 
 		$testee = new Testee();
 
-		$this->assertSame( $response, $testee->sanitize( $value ) );
+		$this->assertSame( $expected, $testee->sanitize( $value ) );
 	}
 
 	/**
@@ -57,23 +57,23 @@ class SettingsModelTest extends TestCase {
 
 		return array(
 			'default'       => array(
-				'response' => $value,
+				'expected' => $value,
 				'value'    => $value,
 			),
 			'empty_value'   => array(
-				'response' => '',
+				'expected' => '',
 				'value'    => '',
 			),
 			'invalid_date'  => array(
-				'response' => '',
+				'expected' => '',
 				'value'    => 'foo',
 			),
 			'invalid_month' => array(
-				'response' => '',
+				'expected' => '',
 				'value'    => '1984-05-32',
 			),
 			'invalid_day'   => array(
-				'response' => '',
+				'expected' => '',
 				'value'    => '1984-13-02',
 			),
 		);

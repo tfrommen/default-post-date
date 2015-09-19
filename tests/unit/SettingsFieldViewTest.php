@@ -43,7 +43,7 @@ class SettingsFieldViewTest extends TestCase {
 					WP_Mock\Functions::type( 'string' ),
 					WP_Mock\Functions::type( 'string' ),
 					array( $testee, 'render' ),
-					'general',
+					'writing',
 				),
 			)
 		);
@@ -76,11 +76,10 @@ class SettingsFieldViewTest extends TestCase {
 		$testee = new Testee( $settings );
 
 		WP_Mock::wpPassthruFunction(
-			'esc_html_x',
+			'esc_html__',
 			array(
 				'times' => 1,
 				'args' => array(
-					WP_Mock\Functions::type( 'string' ),
 					WP_Mock\Functions::type( 'string' ),
 					'default-post-date',
 				),
