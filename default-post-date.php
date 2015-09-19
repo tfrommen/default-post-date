@@ -13,4 +13,4 @@
 
 defined( 'ABSPATH' ) or die();
 
-require_once __DIR__ . '/src/default-post-date.php';
+require_once __DIR__ . '/src/' . basename( __FILE__ );
