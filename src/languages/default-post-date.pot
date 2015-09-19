@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Default Post Date package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Default Post Date 1.4.0\n"
+"Project-Id-Version: Default Post Date 1.4.1\n"
 "Report-Msgid-Bugs-To: https://github.com/tfrommen/default-post-date/issues\n"
-"POT-Creation-Date: 2015-09-18 13:33:05+00:00\n"
+"POT-Creation-Date: 2015-09-19 10:18:42+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,6 +24,11 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
+#: inc/Views/SettingsField.php:66
+#. translators: %s = date format
+msgid "Please enter the default post date according to the %s date format."
+msgstr ""
+
 #. Description of the plugin/theme
 msgid ""
 "Define an individual default post date that is to be used when adding a new "
@@ -33,9 +38,4 @@ msgstr ""
 #: inc/Views/SettingsField.php:43
 msgctxt "Settings field title"
 msgid "Default Post Date"
-msgstr ""
-
-#: inc/Views/SettingsField.php:65
-msgctxt "Settings field description, %s = date format"
-msgid "Please enter the default post date according to the %s date format."
 msgstr ""
