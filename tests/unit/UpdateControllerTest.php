@@ -12,13 +12,21 @@ class UpdateControllerTest extends TestCase {
 	 * @covers       tfrommen\DefaultPostDate\Controllers\Update::update
 	 * @dataProvider provide_update_data
 	 *
+	 * @param bool   $expected
 	 * @param string $version
 	 * @param string $old_version
+	 * @param bool   $is_current_version
 	 * @param string $default_post_date
 	 *
 	 * @return void
 	 */
-	public function test_update( $version, $old_version, $default_post_date ) {
+	public function test_update(
+		$expected,
+		$version,
+		$old_version,
+		$is_current_version,
+		$default_post_date
+	) {
 
 		$testee = new Testee( $version );
 
@@ -33,54 +41,56 @@ class UpdateControllerTest extends TestCase {
 			)
 		);
 
-		if ( version_compare( $old_version, '1.4.1' ) ) {
+		if ( ! $is_current_version ) {
+			if ( version_compare( $old_version, '1.4.1' ) ) {
+				WP_Mock::wpFunction(
+					'get_option',
+					array(
+						'times'  => 1,
+						'args'   => array(
+							Mockery::type( 'string' ),
+						),
+						'return' => $default_post_date,
+					)
+				);
+
+				if ( $default_post_date ) {
+					WP_Mock::wpFunction(
+						'update_option',
+						array(
+							'times' => 1,
+							'args'  => array(
+								Mockery::type( 'string' ),
+								$default_post_date,
+							),
+						)
+					);
+
+					WP_Mock::wpFunction(
+						'delete_option',
+						array(
+							'times' => 1,
+							'args'  => array(
+								Mockery::type( 'string' ),
+							),
+						)
+					);
+				}
+			}
+
 			WP_Mock::wpFunction(
-				'get_option',
+				'update_option',
 				array(
-					'times'  => 1,
-					'args'   => array(
+					'times' => 1,
+					'args'  => array(
 						Mockery::type( 'string' ),
+						$version,
 					),
-					'return' => $default_post_date,
 				)
 			);
-
-			if ( $default_post_date ) {
-				WP_Mock::wpFunction(
-					'update_option',
-					array(
-						'times' => 1,
-						'args'  => array(
-							Mockery::type( 'string' ),
-							$default_post_date,
-						),
-					)
-				);
-
-				WP_Mock::wpFunction(
-					'delete_option',
-					array(
-						'times' => 1,
-						'args'  => array(
-							Mockery::type( 'string' ),
-						),
-					)
-				);
-			}
 		}
 
-		WP_Mock::wpFunction(
-			'update_option',
-			array(
-				'times' => 1,
-				'args'  => array(
-					Mockery::type( 'string' ),
-					$version,
-				),
-			)
-		);
-
-		$testee->update();
+		$this->assertSame( $expected, $testee->update() );
 
 		$this->assertConditionsMet();
 	}
@@ -98,24 +108,32 @@ class UpdateControllerTest extends TestCase {
 
 		return array(
 			'no_version'                       => array(
-				'version'           => $version,
-				'old_version'       => '',
-				'default_post_date' => '',
+				'expected'           => TRUE,
+				'version'            => $version,
+				'old_version'        => '',
+				'is_current_version' => FALSE,
+				'default_post_date'  => '',
 			),
 			'old_version_no_default_post_date' => array(
-				'version'           => $version,
-				'old_version'       => '0',
-				'default_post_date' => '',
+				'expected'           => TRUE,
+				'version'            => $version,
+				'old_version'        => '0',
+				'is_current_version' => FALSE,
+				'default_post_date'  => '',
 			),
 			'old_version'                      => array(
-				'version'           => $version,
-				'old_version'       => '0',
-				'default_post_date' => $default_post_date,
+				'expected'           => TRUE,
+				'version'            => $version,
+				'old_version'        => '0',
+				'is_current_version' => FALSE,
+				'default_post_date'  => $default_post_date,
 			),
 			'current_version'                  => array(
-				'version'           => $version,
-				'old_version'       => $version,
-				'default_post_date' => $default_post_date,
+				'expected'           => FALSE,
+				'version'            => $version,
+				'old_version'        => $version,
+				'is_current_version' => TRUE,
+				'default_post_date'  => $default_post_date,
 			),
 		);
 	}

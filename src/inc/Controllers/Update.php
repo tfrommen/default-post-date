@@ -32,17 +32,22 @@ class Update {
 	/**
 	 * Update the plugin.
 	 *
-	 * @return void
+	 * @return bool
 	 */
 	public function update() {
 
 		$old_version = (string) get_option( $this->version_option_name );
+		if ( $old_version === $this->version ) {
+			return FALSE;
+		}
 
 		if ( version_compare( $old_version, '1.4.1' ) ) {
 			$this->rename_option();
 		}
 
 		update_option( $this->version_option_name, $this->version );
+
+		return TRUE;
 	}
 
 	/**
