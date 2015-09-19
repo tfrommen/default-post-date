@@ -12,12 +12,7 @@ class Settings {
 	/**
 	 * @var string
 	 */
-	private $option_group = 'general';
-
-	/**
-	 * @var string
-	 */
-	private $option_name = '_default_post_date';
+	private $option_name = 'default_post_date';
 
 	/**
 	 * Register the setting.
@@ -28,7 +23,7 @@ class Settings {
 	 */
 	public function register() {
 
-		register_setting( $this->option_group, $this->option_name, array( $this, 'sanitize' ) );
+		register_setting( 'writing', $this->option_name, array( $this, 'sanitize' ) );
 	}
 
 	/**

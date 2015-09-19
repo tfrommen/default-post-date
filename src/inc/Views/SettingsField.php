@@ -51,7 +51,7 @@ class SettingsField {
 			$this->settings->get_option_name(),
 			$title,
 			array( $this, 'render' ),
-			'general'
+			'writing'
 		);
 	}
 
@@ -62,9 +62,9 @@ class SettingsField {
 	 */
 	public function render() {
 
-		$description = esc_html_x(
+		/* translators: %s = date format */
+		$description = esc_html__(
 			'Please enter the default post date according to the %s date format.',
-			'Settings field description, %s = date format',
 			'default-post-date'
 		);
 
