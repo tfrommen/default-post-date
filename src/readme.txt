@@ -2,7 +2,7 @@
 Contributors: tfrommen
 Tags: bulk, date, post, posts, publish
 Requires at least: 2.9.0
-Tested up to: 4.3.1
+Tested up to: 4.4
 Stable tag: trunk
 
 Define an individual default post date that is to be used when adding a new post.
@@ -38,6 +38,12 @@ This plugin requires PHP 5.3.
 1. **Setting** - Here you can define the default post date.
 
 == Changelog ==
+
+= 1.5.0 =
+* Complete refactor.
+* Use composer autoloader.
+* Refactor tests.
+* Compatible up to WordPress 4.4.
 
 = 1.4.1 =
 * Move settings field to Writing Settings.

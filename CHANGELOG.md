@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.0
+* Complete refactor.
+* Use composer autoloader.
+* Refactor tests.
+* Compatible up to WordPress 4.4.
+
 ## 1.4.1
 * Move settings field to Writing Settings.
 * Rename plugin option.

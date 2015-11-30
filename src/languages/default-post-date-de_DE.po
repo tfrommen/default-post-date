@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Default Post Date\n"
 
 #. translators: %s = date format
-#: inc/Views/SettingsField.php:66
+#: inc/SettingsField/View.php:66
 msgid "Please enter the default post date according to the %s date format."
 msgstr "Bitte gib das Standarddatum entsprechend dem Format %s ein."
 
@@ -19,7 +19,7 @@ msgstr "Bitte gib das Standarddatum entsprechend dem Format %s ein."
 msgid "Define an individual default post date that is to be used when adding a new post."
 msgstr "Lege ein individuelles Standarddatum fest, das beim Erstellen neuer Posts verwendet werden soll."
 
-#: inc/Views/SettingsField.php:43
+#: inc/SettingsField/View.php:43
 msgctxt "Settings field title"
 msgid "Default Post Date"
 msgstr "Standarddatum"
