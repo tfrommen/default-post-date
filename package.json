@@ -1,6 +1,6 @@
 {
 	"name": "default-post-date",
-	"version": "1.4.1",
+	"version": "1.5.0",
 	"description": "Define an individual default post date that is to be used when adding a new post.",
 	"keywords": [
 		"bulk",
@@ -22,11 +22,23 @@
 		"url": "https://github.com/tfrommen/default-post-date"
 	},
 	"devDependencies": {
-		"grunt": "^0.4.5",
-		"grunt-contrib-jshint": "^0.11.2",
-		"grunt-contrib-watch": "^0.6.1",
-		"grunt-glotpress": "^0.2.1",
-		"grunt-wp-i18n": "^0.5.2",
-		"load-grunt-tasks": "^3.2.0"
+		"grunt": "~0.4.5",
+		"grunt-contrib-clean": "~0.7.0",
+		"grunt-contrib-concat": "~0.5.1",
+		"grunt-contrib-imagemin": "~1.0.0",
+		"grunt-contrib-jshint": "~0.11.3",
+		"grunt-contrib-uglify": "~0.10.0",
+		"grunt-contrib-watch": "~0.6.1",
+		"grunt-glotpress": "~0.2.1",
+		"grunt-jscs": "~2.3.0",
+		"grunt-jsonlint": "~1.0.6",
+		"grunt-jsvalidate": "~0.2.2",
+		"grunt-lineending": "~0.2.4",
+		"grunt-newer": "~1.1.1",
+		"grunt-phplint": "~0.0.5",
+		"grunt-wp-i18n": "~0.5.3",
+		"jshint-stylish": "~2.1.0",
+		"load-grunt-tasks": "~3.3.0",
+		"lodash": "~3.10.1"
 	}
 }
