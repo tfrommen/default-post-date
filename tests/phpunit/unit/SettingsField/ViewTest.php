@@ -1,32 +1,42 @@
 <?php # -*- coding: utf-8 -*-
 
-use tfrommen\DefaultPostDate\Views\SettingsField as Testee;
+namespace tfrommen\Tests\DefaultPostDate\SettingsField;
+
+use Mockery;
+use tfrommen\DefaultPostDate\Setting\Option;
+use tfrommen\DefaultPostDate\SettingsField\View as Testee;
+use WP_Mock;
 use WP_Mock\Tools\TestCase;
 
 /**
- * Test case for the SettingsFieldView class.
+ * Test case for the settings field view.
  */
-class SettingsFieldViewTest extends TestCase {
+class ViewTest extends TestCase {
 
 	/**
-	 * @covers tfrommen\DefaultPostDate\Views\SettingsField::add
+	 * @covers tfrommen\DefaultPostDate\SettingsField\View::add
 	 *
 	 * @return void
 	 */
 	public function test_add() {
 
-		/** @var tfrommen\DefaultPostDate\Models\Settings $settings */
-		$settings = Mockery::mock( 'tfrommen\DefaultPostDate\Models\Settings' )
-			->shouldReceive( 'get_option_name' )
-			->andReturn( 'option_name' )
+		$option_group = 'option_group';
+
+		$option_name = 'plugin_option';
+
+		/** @var Option $option */
+		$option = Mockery::mock( 'tfrommen\DefaultPostDate\Setting\Option' )
+			->shouldReceive( 'get_group' )
+			->andReturn( $option_group )
+			->shouldReceive( 'get_name' )
+			->andReturn( $option_name )
 			->getMock();
 
-		$testee = new Testee( $settings );
+		$testee = new Testee( $option );
 
 		WP_Mock::wpFunction(
 			'esc_html_x',
 			array(
-				'times'  => 1,
 				'args' => array(
 					WP_Mock\Functions::type( 'string' ),
 					WP_Mock\Functions::type( 'string' ),
@@ -38,12 +48,11 @@ class SettingsFieldViewTest extends TestCase {
 		WP_Mock::wpFunction(
 			'add_settings_field',
 			array(
-				'times' => 1,
 				'args'  => array(
-					WP_Mock\Functions::type( 'string' ),
+					$option_name,
 					WP_Mock\Functions::type( 'string' ),
 					array( $testee, 'render' ),
-					'writing',
+					$option_group,
 				),
 			)
 		);
@@ -54,31 +63,29 @@ class SettingsFieldViewTest extends TestCase {
 	}
 
 	/**
-	 * @covers tfrommen\DefaultPostDate\Views\SettingsField::render
+	 * @covers tfrommen\DefaultPostDate\SettingsField\View::render
 	 *
 	 * @return void
 	 */
 	public function test_render() {
 
+		$option_value = '1984-05-02';
+
 		$option_name = 'option_name';
 
-		$value = '1984-05-02';
-
-		/** @var tfrommen\DefaultPostDate\Models\Settings $settings */
-		$settings = Mockery::mock( 'tfrommen\DefaultPostDate\Models\Settings' )
-			->shouldReceive( 'get_option_name' )
-			->andReturn( $option_name )
-			->getMock()
+		/** @var Option $option */
+		$option = Mockery::mock( 'tfrommen\DefaultPostDate\Setting\Option' )
 			->shouldReceive( 'get' )
-			->andReturn( $value )
+			->andReturn( $option_value )
+			->shouldReceive( 'get_name' )
+			->andReturn( $option_name )
 			->getMock();
 
-		$testee = new Testee( $settings );
+		$testee = new Testee( $option );
 
 		WP_Mock::wpPassthruFunction(
 			'esc_html__',
 			array(
-				'times' => 1,
 				'args' => array(
 					WP_Mock\Functions::type( 'string' ),
 					'default-post-date',
@@ -89,9 +96,8 @@ class SettingsFieldViewTest extends TestCase {
 		WP_Mock::wpPassthruFunction(
 			'esc_attr',
 			array(
-				'times' => 1,
 				'args' => array(
-					WP_Mock\Functions::type( 'string' ),
+					$option_value,
 				),
 			)
 		);
@@ -104,7 +110,7 @@ class SettingsFieldViewTest extends TestCase {
 			Please enter the default post date according to the <code>YYYY-MM-DD</code> date format.
 		</p>
 HTML;
-		$output = sprintf( $output, $option_name, $value );
+		$output = sprintf( $output, $option_name, $option_value );
 
 		$this->expectOutputString( $output );
 
@@ -112,5 +118,4 @@ HTML;
 
 		$this->assertConditionsMet();
 	}
-
 }
