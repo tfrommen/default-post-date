@@ -34,9 +34,19 @@
 		"mockery/mockery": "~0.9.4",
 		"phpunit/phpunit": "~4.0"
 	},
+	"autoload": {
+		"psr-4": {
+			"tfrommen\\DefaultPostDate\\": "src/inc/"
+		}
+	},
+	"scripts": {
+		"post-autoload-dump": [
+			"composer dump-autoload -d src"
+		]
+	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "1.5.x-dev"
+			"dev-master": "1.6.x-dev"
 		}
 	}
 }

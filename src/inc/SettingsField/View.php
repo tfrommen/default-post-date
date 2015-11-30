@@ -1,15 +1,15 @@
 <?php # -*- coding: utf-8 -*-
 
-namespace tfrommen\DefaultPostDate\Views;
+namespace tfrommen\DefaultPostDate\SettingsField;
 
-use tfrommen\DefaultPostDate\Models\Settings;
+use tfrommen\DefaultPostDate\Setting\Option;
 
 /**
  * Settings field view.
  *
- * @package tfrommen\DefaultPostDate\Views
+ * @package tfrommen\DefaultPostDate\SettingsField
  */
-class SettingsField {
+class View {
 
 	/**
 	 * @var string
@@ -17,22 +17,22 @@ class SettingsField {
 	private $id = 'default-post-date';
 
 	/**
-	 * @var Settings
+	 * @var Option
 	 */
-	private $settings;
+	private $option;
 
 	/**
 	 * Constructor. Set up the properties.
 	 *
-	 * @param Settings $settings Settings model.
+	 * @param Option $option Option model.
 	 */
-	public function __construct( Settings $settings ) {
+	public function __construct( Option $option ) {
 
-		$this->settings = $settings;
+		$this->option = $option;
 	}
 
 	/**
-	 * Add the settings field to the general options.
+	 * Adds the settings field to the Writing Settings.
 	 *
 	 * @wp-hook admin_init
 	 *
@@ -42,21 +42,21 @@ class SettingsField {
 
 		$title = esc_html_x( 'Default Post Date', 'Settings field title', 'default-post-date' );
 		$title = sprintf(
-			'<label for="%s">%s</label>',
-			$this->id,
-			$title
+			'<label for="%2$s">%1$s</label>',
+			$title,
+			$this->id
 		);
 
 		add_settings_field(
-			$this->settings->get_option_name(),
+			$this->option->get_name(),
 			$title,
 			array( $this, 'render' ),
-			'writing'
+			$this->option->get_group()
 		);
 	}
 
 	/**
-	 * Render the HTML.
+	 * Renders the HTML.
 	 *
 	 * @return void
 	 */
@@ -70,13 +70,12 @@ class SettingsField {
 
 		$date_format = 'YYYY-MM-DD';
 		?>
-		<input type="text" id="<?php echo $this->id; ?>" name="<?php echo $this->settings->get_option_name(); ?>"
-			value="<?php echo esc_attr( $this->settings->get() ); ?>" maxlength="10"
+		<input type="text" id="<?php echo $this->id; ?>" name="<?php echo $this->option->get_name(); ?>"
+			value="<?php echo esc_attr( $this->option->get() ); ?>" maxlength="10"
 			placeholder="<?php echo $date_format; ?>">
 		<p class="description">
 			<?php printf( $description, "<code>$date_format</code>" ); ?>
 		</p>
 		<?php
 	}
-
 }

@@ -5,7 +5,7 @@
  * Description: Define an individual default post date that is to be used when adding a new post.
  * Author:      Thorsten Frommen
  * Author URI:  http://tfrommen.de
- * Version:     1.4.1
+ * Version:     1.5.0
  * Text Domain: default-post-date
  * Domain Path: /languages
  * License:     GPLv3
@@ -13,18 +13,14 @@
 
 namespace tfrommen\DefaultPostDate;
 
-use tfrommen\Autoloader;
-
 if ( ! function_exists( 'add_action' ) ) {
 	return;
 }
 
-require_once __DIR__ . '/inc/Autoloader/bootstrap.php';
-
 add_action( 'plugins_loaded', __NAMESPACE__ . '\initialize' );
 
 /**
- * Initialize the plugin.
+ * Initializes the plugin.
  *
  * @wp-hook plugins_loaded
  *
@@ -32,8 +28,9 @@ add_action( 'plugins_loaded', __NAMESPACE__ . '\initialize' );
  */
 function initialize() {
 
-	$autoloader = new Autoloader\Autoloader();
-	$autoloader->add_rule( new Autoloader\NamespaceRule( __DIR__ . '/inc', __NAMESPACE__ ) );
+	if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+		require_once __DIR__ . '/vendor/autoload.php';
+	}
 
 	$plugin = new Plugin( __FILE__ );
 	$plugin->initialize();
